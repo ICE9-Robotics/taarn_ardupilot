@@ -173,6 +173,7 @@ static const struct {
     { "calibration",        Calibration::create },
     { "vectored",           Submarine::create },
     { "vectored_6dof",      Submarine::create },
+    { "mallard",            Submarine::create },
     { "silentwings",        SilentWings::create },
     { "morse",              Morse::create },
     { "airsim",             AirSim::create},
@@ -564,7 +565,7 @@ void SITL_State::_parse_command_line(int argc, char * const argv[])
         printf("You must specify a vehicle model.\n");
         exit(1);
     }
-
+    
     for (uint8_t i=0; i < ARRAY_SIZE(model_constructors); i++) {
         if (strncasecmp(model_constructors[i].name, model_str, strlen(model_constructors[i].name)) == 0) {
             // printf("Creating model %f,%f,%f,%f at speed %.1f\n", opos.lat, opos.lng, opos.alt, opos.hdg, speedup);
