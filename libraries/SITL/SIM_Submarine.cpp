@@ -47,6 +47,16 @@ static Thruster vectored_6dof_thrusters[] =
        Thruster(7,          -1.0f,          1.0f,           0,              -1.0f,              0,                  0)
 };
 
+
+static Thruster mallard_thrusters[] =
+{
+       //       Motor #     Roll Factor     Pitch Factor    Yaw Factor      Throttle Factor     Forward Factor      Lateral Factor
+       Thruster(0,          0,              0,              -1.0f,           0,                  -1.0f,              1.0f),
+       Thruster(1,          0,              0,              1.0f,          0,                  -1.0f,              -1.0f),
+       Thruster(2,          0,              0,              1.0f,          0,                  1.0f,               1.0f),
+       Thruster(3,          0,              0,              -1.0f,           0,                  1.0f,               -1.0f)
+};
+
 Submarine::Submarine(const char *frame_str) :
     Aircraft(frame_str),
     frame(NULL)
@@ -61,6 +71,9 @@ Submarine::Submarine(const char *frame_str) :
     if (strstr(frame_str, "vectored_6dof")) {
         thrusters = vectored_6dof_thrusters;
         n_thrusters = 8;
+    } else if (strstr(frame_str, "mallard")) {
+        thrusters = mallard_thrusters;
+        n_thrusters = 4;
     }
     lock_step_scheduled = true;
 }
